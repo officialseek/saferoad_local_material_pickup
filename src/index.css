@@ -1,0 +1,34 @@
+@import 'tailwindcss';
+
+@theme {
+  /* Saferoad varumärkesfärger – https://www.saferoad-traffic.se/brand-guidelines/ */
+  --color-saferoad-yellow: #e0ff00;
+  --color-saferoad-yellow-hover: #c9e600;
+  --color-saferoad-yellow-light: #f0ffb8;
+  --color-saferoad-charcoal: #212427;
+  --color-saferoad-charcoal-soft: #383b3e;
+  --color-saferoad-steel: #cfd4e5;
+  --color-saferoad-forest: #3e553d;
+  --color-saferoad-sand: #f4f4e1;
+  --color-saferoad-warm-white: #fefef4;
+  --color-saferoad-orange: #ff4d00;
+
+  /* Semantiska alias för befintliga komponenter */
+  --color-brand-50: #f5ffcc;
+  --color-brand-100: #eefab0;
+  --color-brand-200: #e0ff00;
+  --color-brand-500: #e0ff00;
+  --color-brand-600: #e0ff00;
+  --color-brand-700: #3e553d;
+
+  --font-sans: 'Inter', 'Segoe UI', system-ui, sans-serif;
+}
+
+body {
+  @apply bg-saferoad-warm-white text-saferoad-charcoal antialiased;
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background-color: color-mix(in srgb, var(--color-saferoad-yellow) 40%, white);
+}
