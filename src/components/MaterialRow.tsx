@@ -18,12 +18,29 @@ export function MaterialRow({ material, quantity, onQuantityChange }: MaterialRo
           : 'border-saferoad-steel/80 bg-white'
       }`}
     >
-      <div className="min-w-0 flex-1">
-        <div className="flex items-center gap-2">
-          <span className="shrink-0 rounded bg-saferoad-charcoal px-1.5 py-0.5 font-mono text-xs font-semibold text-saferoad-yellow">
+      <div className="flex min-w-0 flex-1 items-center gap-3">
+        {material.imageUrl ? (
+          <img
+            src={material.imageUrl}
+            alt=""
+            className="h-12 w-12 shrink-0 rounded-lg border border-saferoad-steel/60 bg-white object-contain p-1"
+            loading="lazy"
+          />
+        ) : (
+          <div
+            className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg border border-dashed border-saferoad-steel/60 bg-saferoad-warm-white text-[10px] text-saferoad-charcoal-soft"
+            aria-hidden
+          >
             {material.code}
-          </span>
-          <p className="text-sm font-medium text-saferoad-charcoal">{material.name}</p>
+          </div>
+        )}
+        <div className="min-w-0">
+          <div className="flex items-center gap-2">
+            <span className="shrink-0 rounded bg-saferoad-charcoal px-1.5 py-0.5 font-mono text-xs font-semibold text-saferoad-yellow">
+              {material.code}
+            </span>
+            <p className="text-sm font-medium text-saferoad-charcoal">{material.name}</p>
+          </div>
         </div>
       </div>
 

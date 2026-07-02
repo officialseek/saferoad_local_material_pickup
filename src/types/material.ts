@@ -5,6 +5,7 @@ export interface Material {
   unit: string
   category: string
   categoryOrder: number
+  imageUrl?: string
 }
 
 export interface PickupLine {

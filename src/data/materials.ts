@@ -1,4 +1,5 @@
 import { getCategoryLabel, getCategoryOrder } from './signCategories'
+import { signImages } from './signImages'
 import { vagmarken } from './vagmarken'
 import type { Material } from '../types/material'
 
@@ -10,6 +11,7 @@ export const materials: Material[] = vagmarken.map((sign) => ({
   unit: sign.unit,
   category: getCategoryLabel(sign.categoryId),
   categoryOrder: getCategoryOrder(sign.categoryId),
+  imageUrl: signImages[sign.id],
 }))
 
 export function getMaterialById(id: string): Material | undefined {
