@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview",
-    "download-sign-images": "node scripts/download-sign-images.mjs"
+    "download-sign-images": "node scripts/download-sign-images.mjs",
+    "prune-sign-images": "node scripts/prune-sign-images.mjs"
   },
   "dependencies": {
     "react": "^19.2.7",

@@ -13,20 +13,11 @@ const CATEGORY_SLUGS = [
   'forbudsmarken',
   'pabudsmarken',
   'anvisningsmarken',
-  'lokaliseringsmarken-for-vagvisning',
-  'lokaliseringsmarken-for-gang-och-cykeltrafik',
   'lokaliseringsmarken-for-upplysning-om-allmanna-inrattningar-med-mera',
   'lokaliseringsmarken-for-upplysning-om-serviceanlaggningar-med-mera',
-  'lokaliseringsmarken-for-turistiskt-intressanta-mal-med-mera',
-  'upplysningsmarken',
   'vagmarkeringar',
-  'tecken-av-polisman-med-flera',
   'symboler',
   'tillaggstavlor',
-  'trafiksignaler',
-  'tecken-av-vakt',
-  'andra-anordningar-for-anvisningar-for-trafiken',
-  'sakerhetsanordningar-i-korsningar-med-jarnvag-eller-sparvag',
 ]
 
 function codeToId(code) {
