@@ -42,7 +42,11 @@ export function Layout({ children, subtitle = 'Materialavhämtning' }: LayoutPro
             rel="noopener noreferrer"
             className="glass-link"
           >
-            saferoad-traffic.se  
+            <img
+              src={saferoadLogo}
+              alt="Saferoad"
+              className="mx-auto h-4 w-auto max-w-[160px] object-contain brightness-0"
+            />  
           </a>
           <p> Sebastian Ekström - 2026</p>
         </div>
