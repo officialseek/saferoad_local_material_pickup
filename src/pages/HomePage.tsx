@@ -25,7 +25,7 @@ export function HomePage() {
         <p className="text-xs text-saferoad-charcoal-soft">
           Testa demoflödet:{' '}
           <Link to="/plats/demo" className="glass-link">
-            /plats/demo
+            TESTA DEMOFLÖDET HÄR
           </Link>
         </p>
       </div>
