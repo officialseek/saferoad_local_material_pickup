@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import {
   featuredCategoryLabel,
   featuredCategoryOrder,
@@ -6,6 +6,8 @@ import {
 } from '../data/featuredSigns'
 import { materials } from '../data/materials'
 import { MaterialCard } from './MaterialCard'
+
+const PAGE_SIZE = 24
 
 interface MaterialSelectorProps {
   quantities: Record<string, number>
@@ -33,20 +35,35 @@ function matchesSearch(material: (typeof materials)[number], query: string): boo
 
 function CategorySection({
   group,
-  isOpen,
+  defaultOpen,
   featured = false,
   quantities,
   onQuantityChange,
 }: {
   group: CategoryGroup
-  isOpen: boolean
+  defaultOpen: boolean
   featured?: boolean
   quantities: Record<string, number>
   onQuantityChange: (materialId: string, quantity: number) => void
 }) {
+  const [open, setOpen] = useState(defaultOpen)
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE)
+
+  useEffect(() => {
+    setOpen(defaultOpen)
+  }, [defaultOpen])
+
+  useEffect(() => {
+    setVisibleCount(PAGE_SIZE)
+  }, [group.category, group.items.length])
+
+  const visibleItems = group.items.slice(0, visibleCount)
+  const remainingCount = group.items.length - visibleItems.length
+
   return (
     <details
-      open={isOpen}
+      open={open}
+      onToggle={(event) => setOpen(event.currentTarget.open)}
       className={featured ? 'group glass-panel-accent' : 'group glass-panel'}
     >
       <summary className="flex cursor-pointer list-none items-center justify-between gap-2 px-4 py-3 marker:content-none">
@@ -62,16 +79,30 @@ function CategorySection({
         </span>
       </summary>
 
-      <div className="grid grid-cols-2 gap-3 border-t border-white/35 px-3 py-3">
-        {group.items.map((material) => (
-          <MaterialCard
-            key={material.id}
-            material={material}
-            quantity={quantities[material.id] ?? 0}
-            onQuantityChange={(qty) => onQuantityChange(material.id, qty)}
-          />
-        ))}
-      </div>
+      {open && (
+        <div className="border-t border-white/35 px-3 py-3">
+          <div className="grid grid-cols-2 gap-3">
+            {visibleItems.map((material) => (
+              <MaterialCard
+                key={material.id}
+                material={material}
+                quantity={quantities[material.id] ?? 0}
+                onQuantityChange={(qty) => onQuantityChange(material.id, qty)}
+              />
+            ))}
+          </div>
+
+          {remainingCount > 0 && (
+            <button
+              type="button"
+              onClick={() => setVisibleCount((count) => count + PAGE_SIZE)}
+              className="glass-btn mt-3 w-full py-2.5 text-sm font-medium"
+            >
+              Visa fler ({remainingCount} kvar)
+            </button>
+          )}
+        </div>
+      )}
     </details>
   )
 }
@@ -171,7 +202,7 @@ export function MaterialSelector({ quantities, onQuantityChange }: MaterialSelec
           {featuredGroup && (
             <CategorySection
               group={featuredGroup}
-              isOpen={query.length === 0 || featuredGroup.selectedCount > 0}
+              defaultOpen={query.length === 0 || featuredGroup.selectedCount > 0}
               featured
               quantities={quantities}
               onQuantityChange={onQuantityChange}
@@ -182,7 +213,7 @@ export function MaterialSelector({ quantities, onQuantityChange }: MaterialSelec
             <CategorySection
               key={group.category}
               group={group}
-              isOpen={query.length > 0 || group.selectedCount > 0}
+              defaultOpen={query.length > 0 || group.selectedCount > 0}
               quantities={quantities}
               onQuantityChange={onQuantityChange}
             />

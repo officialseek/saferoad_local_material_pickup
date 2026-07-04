@@ -1,3 +1,4 @@
+import { useSignImage } from '../hooks/useSignImage'
 import type { Material } from '../types/material'
 
 interface MaterialCardProps {
@@ -7,6 +8,7 @@ interface MaterialCardProps {
 }
 
 export function MaterialCard({ material, quantity, onQuantityChange }: MaterialCardProps) {
+  const imageUrl = useSignImage(material.id)
   const decrement = () => onQuantityChange(Math.max(0, quantity - 1))
   const increment = () => onQuantityChange(quantity + 1)
   const isSelected = quantity > 0
@@ -18,12 +20,13 @@ export function MaterialCard({ material, quantity, onQuantityChange }: MaterialC
       }`}
     >
       <div className="glass-inset mb-3 flex min-h-28 items-center justify-center p-3">
-        {material.imageUrl ? (
+        {imageUrl ? (
           <img
-            src={material.imageUrl}
+            src={imageUrl}
             alt=""
             className="max-h-24 w-full object-contain drop-shadow-sm"
             loading="lazy"
+            decoding="async"
           />
         ) : (
           <div className="flex h-24 w-full items-center justify-center text-sm font-mono text-saferoad-charcoal-soft">

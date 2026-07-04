@@ -1,9 +1,8 @@
 /**
  * Vägmärkesbilder från src/assets/signs/.
- * Nya filer i mappen inkluderas automatiskt via Vite glob-import.
+ * Laddas lazy per bild – undviker att alla ~200 bilder hämtas vid sidladdning.
  */
 const imageModules = import.meta.glob<string>('../assets/signs/*.{png,jpg,jpeg,svg,webp}', {
-  eager: true,
   import: 'default',
   query: '?url',
 })
@@ -13,6 +12,16 @@ function filenameToId(path: string): string {
   return filename.replace(/\.[^.]+$/, '')
 }
 
-export const signImages: Record<string, string> = Object.fromEntries(
-  Object.entries(imageModules).map(([path, url]) => [filenameToId(path), url]),
+const pathById: Record<string, string> = Object.fromEntries(
+  Object.keys(imageModules).map((path) => [filenameToId(path), path]),
 )
+
+export async function loadSignImage(id: string): Promise<string | undefined> {
+  const path = pathById[id]
+  if (!path) return undefined
+  return imageModules[path]()
+}
+
+export function hasSignImage(id: string): boolean {
+  return id in pathById
+}
