@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { Link } from 'react-router-dom'
 import saferoadLogo from '../assets/saferoad-logo.png'
 
 interface LayoutProps {
@@ -17,11 +18,13 @@ export function Layout({ children, subtitle = 'Materialavhämtning' }: LayoutPro
 
       <header className="glass-header sticky top-0 z-20">
         <div className="mx-auto flex max-w-lg items-center gap-4 px-4 py-4">
-          <img
-            src={saferoadLogo}
-            alt="Saferoad"
-            className="h-8 w-auto max-w-[160px] object-contain object-left drop-shadow-sm"
-          />
+          <Link to="/" aria-label="Till startsidan" className="shrink-0 transition hover:opacity-85">
+            <img
+              src={saferoadLogo}
+              alt="Saferoad"
+              className="h-8 w-auto max-w-[160px] object-contain object-left drop-shadow-sm"
+            />
+          </Link>
           <div className="min-w-0 border-l border-white/15 pl-4">
             <p className="truncate text-sm font-semibold text-saferoad-warm-white">{subtitle}</p>
             <p className="text-xs text-saferoad-steel/90">Trafiksäkerhet</p>
