@@ -48,6 +48,7 @@ export function Layout({ children, subtitle = 'Materialavhämtning' }: LayoutPro
               className="mx-auto h-4 w-auto max-w-[160px] object-contain brightness-0"
             />  
           </a>
+          <br />
           <p> Sebastian Ekström - 2026</p>
         </div>
       </footer>
