@@ -8,7 +8,7 @@ export function PickupSummary({ items }: PickupSummaryProps) {
   if (items.length === 0) return null
 
   return (
-    <section className="rounded-xl border border-saferoad-yellow bg-saferoad-sand p-4">
+    <section className="glass-panel-accent p-4">
       <h2 className="text-sm font-semibold text-saferoad-forest">Sammanfattning</h2>
       <ul className="mt-2 space-y-1">
         {items.map((item) => (

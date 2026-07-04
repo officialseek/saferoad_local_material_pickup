@@ -13,18 +13,16 @@ export function MaterialCard({ material, quantity, onQuantityChange }: MaterialC
 
   return (
     <article
-      className={`flex h-full flex-col rounded-xl border p-3 transition ${
-        isSelected
-          ? 'border-saferoad-yellow bg-saferoad-yellow-light/30 shadow-sm'
-          : 'border-saferoad-steel/80 bg-white'
+      className={`flex h-full flex-col p-3 transition ${
+        isSelected ? 'glass-panel-selected' : 'glass-panel'
       }`}
     >
-      <div className="mb-3 flex min-h-28 items-center justify-center rounded-lg border border-saferoad-steel/50 bg-saferoad-warm-white p-3">
+      <div className="glass-inset mb-3 flex min-h-28 items-center justify-center p-3">
         {material.imageUrl ? (
           <img
             src={material.imageUrl}
             alt=""
-            className="max-h-24 w-full object-contain"
+            className="max-h-24 w-full object-contain drop-shadow-sm"
             loading="lazy"
           />
         ) : (
@@ -35,19 +33,17 @@ export function MaterialCard({ material, quantity, onQuantityChange }: MaterialC
       </div>
 
       <div className="mb-3 min-h-0 flex-1 space-y-1">
-        <span className="inline-block rounded bg-saferoad-charcoal px-1.5 py-0.5 font-mono text-xs font-semibold text-saferoad-yellow">
-          {material.code}
-        </span>
+        <span className="glass-badge">{material.code}</span>
         <p className="line-clamp-2 text-sm font-medium leading-snug text-saferoad-charcoal">
           {material.name}
         </p>
       </div>
 
-      <div className="flex items-center justify-between gap-2 border-t border-saferoad-steel/40 pt-3">
+      <div className="flex items-center justify-between gap-2 border-t border-white/40 pt-3">
         <button
           type="button"
           onClick={decrement}
-          className="flex h-9 w-9 items-center justify-center rounded-lg border border-saferoad-steel bg-saferoad-warm-white text-lg font-medium text-saferoad-charcoal transition hover:bg-saferoad-sand"
+          className="glass-btn h-9 w-9 text-lg font-medium"
           aria-label={`Minska ${material.name}`}
         >
           −
@@ -61,7 +57,7 @@ export function MaterialCard({ material, quantity, onQuantityChange }: MaterialC
         <button
           type="button"
           onClick={increment}
-          className="flex h-9 w-9 items-center justify-center rounded-lg bg-saferoad-yellow text-lg font-bold text-saferoad-charcoal transition hover:bg-saferoad-yellow-hover"
+          className="flex h-9 w-9 items-center justify-center rounded-xl bg-saferoad-yellow/90 text-lg font-bold text-saferoad-charcoal shadow-md shadow-saferoad-yellow/20 backdrop-blur-sm transition hover:bg-saferoad-yellow active:scale-95"
           aria-label={`Öka ${material.name}`}
         >
           +

@@ -25,15 +25,12 @@ export function PickupPage() {
   if (!platsId || !location) {
     return (
       <Layout>
-        <div className="py-8 text-center">
+        <div className="glass-panel-strong py-8 text-center">
           <h1 className="text-xl font-semibold text-saferoad-charcoal">Platsen hittades inte</h1>
           <p className="mt-2 text-sm text-saferoad-charcoal-soft">
             QR-koden verkar peka på en okänd plats. Kontrollera koden eller kontakta ansvarig.
           </p>
-          <Link
-            to="/"
-            className="mt-6 inline-block text-sm font-medium text-saferoad-forest underline decoration-saferoad-yellow decoration-2 underline-offset-2"
-          >
+          <Link to="/" className="glass-link mt-6 inline-block text-sm">
             Till startsidan
           </Link>
         </div>
@@ -77,7 +74,7 @@ export function PickupPage() {
   return (
     <Layout subtitle={location.name}>
       <form onSubmit={handleSubmit} className="space-y-6">
-        <div>
+        <div className="glass-panel p-4">
           <p className="text-xs font-semibold uppercase tracking-wide text-saferoad-forest">Plats</p>
           <h1 className="mt-1 text-2xl font-semibold text-saferoad-charcoal">{location.name}</h1>
           {location.address && (
@@ -100,7 +97,7 @@ export function PickupPage() {
 
         {error && (
           <p
-            className="rounded-lg border border-saferoad-orange/30 bg-saferoad-orange/10 px-3 py-2 text-sm text-saferoad-charcoal"
+            className="glass-panel rounded-xl border-saferoad-orange/35 bg-saferoad-orange/12 px-3 py-2 text-sm text-saferoad-charcoal"
             role="alert"
           >
             {error}
@@ -110,7 +107,7 @@ export function PickupPage() {
         <button
           type="submit"
           disabled={!form.canSubmit || isSubmitting}
-          className="w-full rounded-xl bg-saferoad-yellow px-4 py-3.5 text-sm font-bold text-saferoad-charcoal transition hover:bg-saferoad-yellow-hover disabled:cursor-not-allowed disabled:opacity-50"
+          className="glass-btn-primary w-full"
         >
           {isSubmitting ? 'Skickar rapport…' : 'Skicka avhämtningsrapport'}
         </button>

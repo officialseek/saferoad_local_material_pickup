@@ -47,11 +47,7 @@ function CategorySection({
   return (
     <details
       open={isOpen}
-      className={
-        featured
-          ? 'group rounded-xl border-2 border-saferoad-yellow bg-saferoad-yellow-light/20'
-          : 'group rounded-xl border border-saferoad-steel/80 bg-white'
-      }
+      className={featured ? 'group glass-panel-accent' : 'group glass-panel'}
     >
       <summary className="flex cursor-pointer list-none items-center justify-between gap-2 px-4 py-3 marker:content-none">
         <div className="min-w-0 text-left">
@@ -66,11 +62,7 @@ function CategorySection({
         </span>
       </summary>
 
-      <div
-        className={`grid grid-cols-2 gap-3 px-3 py-3 ${
-          featured ? 'border-t border-saferoad-yellow/40' : 'border-t border-saferoad-steel/50'
-        }`}
-      >
+      <div className="grid grid-cols-2 gap-3 border-t border-white/35 px-3 py-3">
         {group.items.map((material) => (
           <MaterialCard
             key={material.id}
@@ -160,22 +152,22 @@ export function MaterialSelector({ quantities, onQuantityChange }: MaterialSelec
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Sök på kod eller namn, t.ex. A20 eller vägarbete"
-          className="w-full rounded-lg border border-saferoad-steel bg-white px-3 py-2.5 text-sm text-saferoad-charcoal outline-none transition placeholder:text-saferoad-charcoal-soft/70 focus:border-saferoad-yellow focus:ring-2 focus:ring-saferoad-yellow/30"
+          className="glass-input"
         />
       </label>
 
       {totalSelected > 0 && (
-        <p className="text-sm font-medium text-saferoad-forest">
+        <p className="glass-panel inline-block px-3 py-1.5 text-sm font-medium text-saferoad-forest">
           {totalSelected} {totalSelected === 1 ? 'märke valt' : 'märken valda'}
         </p>
       )}
 
       {!hasResults ? (
-        <p className="rounded-xl border border-dashed border-saferoad-steel bg-white p-6 text-center text-sm text-saferoad-charcoal-soft">
+        <p className="glass-panel border-dashed p-6 text-center text-sm text-saferoad-charcoal-soft">
           Inga vägmärken matchar sökningen.
         </p>
       ) : (
-        <div className="space-y-2">
+        <div className="space-y-3">
           {featuredGroup && (
             <CategorySection
               group={featuredGroup}

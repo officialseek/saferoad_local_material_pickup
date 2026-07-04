@@ -5,23 +5,13 @@ export const signCategories = [
   { id: 'C', label: 'C. Förbudsmärken', order: 3 },
   { id: 'D', label: 'D. Påbudsmärken', order: 4 },
   { id: 'E', label: 'E. Anvisningsmärken', order: 5 },
-  {
-    id: 'G',
-    label: 'G. Lokaliseringsmärken för upplysning om allmänna inrättningar med mera',
-    order: 6,
-  },
-  {
-    id: 'H',
-    label: 'H. Lokaliseringsmärken för upplysning om serviceanläggningar med mera',
-    order: 7,
-  },
-  { id: 'M', label: 'M. Vägmarkeringar', order: 8 },
-  { id: 'S', label: 'S. Symboler', order: 9 },
-  { id: 'T', label: 'T. Tilläggstavlor', order: 10 },
+  { id: 'M', label: 'M. Vägmarkeringar', order: 6 },
+  { id: 'S', label: 'S. Symboler', order: 7 },
+  { id: 'T', label: 'T. Tilläggstavlor', order: 8 },
   {
     id: 'X',
     label: 'X. Andra anordningar för anvisningar för trafiken',
-    order: 11,
+    order: 9,
   },
 ] as const
 

@@ -13,8 +13,6 @@ const CATEGORY_SLUGS = [
   'forbudsmarken',
   'pabudsmarken',
   'anvisningsmarken',
-  'lokaliseringsmarken-for-upplysning-om-allmanna-inrattningar-med-mera',
-  'lokaliseringsmarken-for-upplysning-om-serviceanlaggningar-med-mera',
   'vagmarkeringar',
   'symboler',
   'tillaggstavlor',

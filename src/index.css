@@ -13,7 +13,6 @@
   --color-saferoad-warm-white: #fefef4;
   --color-saferoad-orange: #ff4d00;
 
-  /* Semantiska alias för befintliga komponenter */
   --color-brand-50: #f5ffcc;
   --color-brand-100: #eefab0;
   --color-brand-200: #e0ff00;
@@ -25,10 +24,66 @@
 }
 
 body {
-  @apply bg-saferoad-warm-white text-saferoad-charcoal antialiased;
+  @apply min-h-svh text-saferoad-charcoal antialiased;
   font-family: var(--font-sans);
+  background:
+    radial-gradient(ellipse 80% 60% at 10% 0%, color-mix(in srgb, var(--color-saferoad-yellow) 28%, transparent), transparent),
+    radial-gradient(ellipse 70% 50% at 90% 10%, color-mix(in srgb, var(--color-saferoad-forest) 18%, transparent), transparent),
+    radial-gradient(ellipse 60% 45% at 50% 100%, color-mix(in srgb, var(--color-saferoad-steel) 35%, transparent), transparent),
+    linear-gradient(160deg, var(--color-saferoad-warm-white) 0%, var(--color-saferoad-sand) 45%, #eef0e8 100%);
+  background-attachment: fixed;
 }
 
 ::selection {
   background-color: color-mix(in srgb, var(--color-saferoad-yellow) 40%, white);
+}
+
+@layer utilities {
+  .glass-panel {
+    @apply rounded-2xl border border-white/55 bg-white/42 shadow-[0_8px_32px_rgba(33,36,39,0.06)] backdrop-blur-xl;
+  }
+
+  .glass-panel-strong {
+    @apply rounded-2xl border border-white/65 bg-white/58 shadow-[0_12px_40px_rgba(33,36,39,0.08)] backdrop-blur-2xl;
+  }
+
+  .glass-panel-accent {
+    @apply rounded-2xl border border-saferoad-yellow/45 bg-saferoad-yellow/18 shadow-[0_8px_32px_rgba(224,255,0,0.12)] backdrop-blur-xl;
+  }
+
+  .glass-panel-selected {
+    @apply rounded-2xl border border-saferoad-yellow/55 bg-saferoad-yellow/22 shadow-[0_8px_28px_rgba(224,255,0,0.15)] backdrop-blur-xl;
+  }
+
+  .glass-header {
+    @apply border-b border-white/15 bg-saferoad-charcoal/72 shadow-[0_4px_24px_rgba(33,36,39,0.2)] backdrop-blur-2xl;
+  }
+
+  .glass-footer {
+    @apply border-t border-white/40 bg-white/35 shadow-[0_-4px_24px_rgba(33,36,39,0.04)] backdrop-blur-xl;
+  }
+
+  .glass-inset {
+    @apply rounded-xl border border-white/50 bg-white/35 shadow-inner shadow-white/25 backdrop-blur-md;
+  }
+
+  .glass-input {
+    @apply w-full rounded-xl border border-white/60 bg-white/48 px-3 py-2.5 text-sm text-saferoad-charcoal shadow-[inset_0_1px_2px_rgba(255,255,255,0.5)] backdrop-blur-md outline-none transition placeholder:text-saferoad-charcoal-soft/70 focus:border-saferoad-yellow/55 focus:bg-white/65 focus:ring-2 focus:ring-saferoad-yellow/25;
+  }
+
+  .glass-btn {
+    @apply flex items-center justify-center rounded-xl border border-white/55 bg-white/45 text-saferoad-charcoal shadow-sm backdrop-blur-md transition hover:bg-white/65 active:scale-95;
+  }
+
+  .glass-btn-primary {
+    @apply rounded-xl bg-saferoad-yellow/92 px-4 py-3.5 text-sm font-bold text-saferoad-charcoal shadow-[0_8px_24px_rgba(224,255,0,0.25)] backdrop-blur-sm transition hover:bg-saferoad-yellow active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .glass-badge {
+    @apply inline-block rounded-md border border-white/20 bg-saferoad-charcoal/88 px-1.5 py-0.5 font-mono text-xs font-semibold text-saferoad-yellow backdrop-blur-sm;
+  }
+
+  .glass-link {
+    @apply font-medium text-saferoad-forest underline decoration-saferoad-yellow/80 decoration-2 underline-offset-2 transition hover:decoration-saferoad-yellow;
+  }
 }

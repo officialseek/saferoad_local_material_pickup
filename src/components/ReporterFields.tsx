@@ -7,9 +7,6 @@ interface ReporterFieldsProps {
   onNotesChange: (value: string) => void
 }
 
-const inputClassName =
-  'w-full rounded-lg border border-saferoad-steel bg-white px-3 py-2.5 text-sm text-saferoad-charcoal outline-none transition placeholder:text-saferoad-charcoal-soft/70 focus:border-saferoad-yellow focus:ring-2 focus:ring-saferoad-yellow/30'
-
 export function ReporterFields({
   reporterName,
   reporterPhone,
@@ -19,7 +16,7 @@ export function ReporterFields({
   onNotesChange,
 }: ReporterFieldsProps) {
   return (
-    <section className="space-y-4">
+    <section className="glass-panel-strong space-y-4 p-4">
       <div>
         <h2 className="text-base font-semibold text-saferoad-charcoal">Dina uppgifter</h2>
         <p className="mt-1 text-sm text-saferoad-charcoal-soft">
@@ -37,7 +34,7 @@ export function ReporterFields({
             value={reporterName}
             onChange={(e) => onReporterNameChange(e.target.value)}
             placeholder="För- och efternamn"
-            className={inputClassName}
+            className="glass-input"
             autoComplete="name"
           />
         </label>
@@ -49,7 +46,7 @@ export function ReporterFields({
             value={reporterPhone}
             onChange={(e) => onReporterPhoneChange(e.target.value)}
             placeholder="07X XXX XX XX"
-            className={inputClassName}
+            className="glass-input"
             autoComplete="tel"
           />
         </label>
@@ -61,7 +58,7 @@ export function ReporterFields({
             onChange={(e) => onNotesChange(e.target.value)}
             placeholder="T.ex. skador, avvikelser eller kompletterande info"
             rows={3}
-            className={`${inputClassName} resize-none`}
+            className="glass-input resize-none"
           />
         </label>
       </div>
