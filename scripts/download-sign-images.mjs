@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
-const SIGNS_DIR = join(ROOT, 'public', 'signs')
+const SIGNS_DIR = join(ROOT, 'src', 'assets', 'signs')
 const BASE = 'https://www.transportstyrelsen.se'
 
 const CATEGORY_SLUGS = [
@@ -84,11 +84,11 @@ async function main() {
     await sleep(200)
   }
 
-  console.log(`\nHämtar ${signPageUrls.size} vägmärkesbilder...`)
+  console.log(`\nHämtar ${signPageUrls.size} vägmärkesbilder till src/assets/signs/...`)
 
-  const images = {}
+  const downloaded = []
   const failed = []
-  let downloaded = 0
+  let downloadedCount = 0
   let skipped = 0
 
   for (const pageUrl of signPageUrls) {
@@ -103,40 +103,27 @@ async function main() {
       const id = codeToId(data.code)
       const extension = data.imagePath.split('.').pop()?.toLowerCase() ?? 'png'
       const destPath = join(SIGNS_DIR, `${id}.${extension}`)
-      const publicPath = `/signs/${id}.${extension}`
 
-      if (existsSync(destPath) && images[id]) {
+      if (existsSync(destPath)) {
         skipped++
         continue
       }
 
       const imageUrl = `${BASE}${data.imagePath}`
       await downloadImage(imageUrl, destPath)
-      images[id] = publicPath
-      downloaded++
-      process.stdout.write(`\r  ${downloaded + skipped}/${signPageUrls.size} – ${data.code}`)
+      downloaded.push(id)
+      downloadedCount++
+      process.stdout.write(`\r  ${downloadedCount + skipped}/${signPageUrls.size} – ${data.code}`)
       await sleep(150)
     } catch (error) {
       failed.push({ pageUrl, reason: error.message })
     }
   }
 
-  console.log(`\n\nKlart: ${downloaded} nedladdade, ${skipped} redan fanns, ${failed.length} misslyckades`)
-
-  const outputPath = join(ROOT, 'src', 'data', 'signImages.ts')
-  const lines = [
-    '/** Bildsökvägar hämtade från Transportstyrelsen. Genereras via scripts/download-sign-images.mjs */',
-    'export const signImages: Record<string, string> = {',
-  ]
-
-  for (const [id, path] of Object.entries(images).sort(([a], [b]) => a.localeCompare(b))) {
-    lines.push(`  '${id}': '${path}',`)
-  }
-
-  lines.push('}', '')
-
-  writeFileSync(outputPath, lines.join('\n'), 'utf8')
-  console.log(`Skrev ${Object.keys(images).length} bildmappningar -> ${outputPath}`)
+  console.log(
+    `\n\nKlart: ${downloadedCount} nedladdade, ${skipped} redan fanns, ${failed.length} misslyckades`,
+  )
+  console.log('Bilder sparas i src/assets/signs/ och importeras automatiskt via signImages.ts')
 
   if (failed.length > 0) {
     const failLog = join(ROOT, 'scripts', 'sign-image-failures.json')

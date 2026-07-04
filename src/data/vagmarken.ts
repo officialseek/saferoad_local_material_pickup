@@ -264,4 +264,7 @@ export const vagmarken: Vagmarke[] = [
   { id: 't23', code: 'T23', name: 'Tunnelkategori', categoryId: 'T', unit: 'st' },
   { id: 't24', code: 'T24', name: 'Laddplats', categoryId: 'T', unit: 'st' },
   { id: 't25', code: 'T25', name: 'Öppet dygnet runt', categoryId: 'T', unit: 'st' },
+  { id: 'x1', code: 'X1', name: 'Markeringspil', categoryId: 'X', unit: 'st' },
+  { id: 'x2', code: 'X2', name: 'Markeringsskärm för hinder', categoryId: 'X', unit: 'st' },
+  { id: 'x3', code: 'X3', name: 'Markeringsskärm för sidohinder, farthinder med mera', categoryId: 'X', unit: 'st' },
 ]

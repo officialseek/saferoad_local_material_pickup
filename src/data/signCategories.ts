@@ -18,6 +18,11 @@ export const signCategories = [
   { id: 'M', label: 'M. Vägmarkeringar', order: 8 },
   { id: 'S', label: 'S. Symboler', order: 9 },
   { id: 'T', label: 'T. Tilläggstavlor', order: 10 },
+  {
+    id: 'X',
+    label: 'X. Andra anordningar för anvisningar för trafiken',
+    order: 11,
+  },
 ] as const
 
 export type SignCategoryId = (typeof signCategories)[number]['id']

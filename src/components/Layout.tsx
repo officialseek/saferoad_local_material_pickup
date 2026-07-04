@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import saferoadLogo from '../assets/saferoad-logo.png'
 
 interface LayoutProps {
   children: ReactNode
@@ -11,7 +12,7 @@ export function Layout({ children, subtitle = 'Materialavhämtning' }: LayoutPro
       <header className="border-b-2 border-saferoad-yellow bg-saferoad-charcoal">
         <div className="mx-auto flex max-w-lg items-center gap-4 px-4 py-4">
           <img
-            src="/saferoad-logo.png"
+            src={saferoadLogo}
             alt="Saferoad"
             className="h-8 w-auto max-w-[160px] object-contain object-left"
           />

@@ -279,6 +279,11 @@ const catalog = {
     ['T24', 'Laddplats'],
     ['T25', 'Öppet dygnet runt'],
   ],
+  X: [
+    ['X1', 'Markeringspil'],
+    ['X2', 'Markeringsskärm för hinder'],
+    ['X3', 'Markeringsskärm för sidohinder, farthinder med mera'],
+  ],
 }
 
 function toId(code) {
